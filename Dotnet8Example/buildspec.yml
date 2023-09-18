@@ -1,0 +1,22 @@
+﻿version: 0.2
+
+phases:
+  install:
+    commands:
+      - curl -sSL https://dot.net/v1/dotnet-install.sh | bash /dev/stdin --channel 8.0
+
+  pre_build:
+    commands:
+      - dotnet restore Dotnet8Example/Dotnet8Example.csproj
+
+  build:
+    commands:
+      - dotnet build Dotnet8Example/Dotnet8Example.csproj 
+
+  post_build:
+    commands:
+      - dotnet publish -c Release -o ./ Dotnet8Example/Dotnet8Example.csproj
+
+artifacts:
+  files:
+    - '**/*'
